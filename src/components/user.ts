@@ -4,6 +4,7 @@ import { User } from "./../UserModel";
 
 const user = () => {
   const [userData, setUserData] = useState<User[]>([]);
+  const [editUser, setEditUser] = useState<User | null>(null);
 
   const getUser = async () => {
     try {
@@ -13,14 +14,27 @@ const user = () => {
       // Handle the error
     }
   };
-  const deleteUser = async (email: string) => {
+  const deleteUser = async (id: string) => {
     try {
       setUserData((prevData) =>
-        prevData.filter((user) => user.email !== email)
+        prevData.filter((user) => user.login.uuid !== id)
       );
     } catch (error) {
       // Handle the error
     }
+  };
+  const Editar = (user: User) => {
+    setEditUser(user);
+  };
+
+  // Función para manejar el guardado de los cambios
+  const guardaredit = (updatedUser: User) => {
+    setUserData((prevData) =>
+      prevData.map((user) =>
+        user.login.uuid === updatedUser.login.uuid ? updatedUser : user
+      )
+    );
+    setEditUser(null);
   };
   useEffect(() => {
     getUser();
@@ -28,6 +42,10 @@ const user = () => {
   return {
     userData,
     deleteUser,
+    editUser,
+    Editar,
+    guardaredit,
+    setEditUser,
   };
 };
 

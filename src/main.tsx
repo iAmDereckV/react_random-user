@@ -5,6 +5,7 @@ import "./index.css";
 
 // CONSOLE
 // npm install axios formik yup
+// npm install formik-mui
 // npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

@@ -15,9 +15,10 @@ import EditIcon from "@mui/icons-material/Edit";
 interface UserTableProps {
   data: User[];
   deleteUser: (email: string) => void;
+  Editar: (data: User) => void;
 }
 
-const UserTable = ({ data, deleteUser }: UserTableProps) => {
+const UserTable = ({ data, deleteUser, Editar }: UserTableProps) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -33,7 +34,7 @@ const UserTable = ({ data, deleteUser }: UserTableProps) => {
         <TableBody>
           {data.map((user: any) => (
             <TableRow
-              key={user.email}
+              key={user.login.uuid}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell align="left" component="th" scope="row">
@@ -51,16 +52,15 @@ const UserTable = ({ data, deleteUser }: UserTableProps) => {
               </TableCell>
               <TableCell align="center">
                 <Button
-                  onClick={() => {
-                    // getPersonsId(row.id);
-                    // setOpenModalEdit(true);
-                  }}
+                  // variant="contained"
+                  // color="default"
+                  onClick={() => Editar(user)}
                 >
                   <EditIcon />
                 </Button>
                 <Button
                   onClick={() => {
-                    confirm("Desea Borrar") && deleteUser(user.email);
+                    confirm("Desea Borrar") && deleteUser(user.login.uuid);
                   }}
                 >
                   <DeleteIcon color="primary" />
