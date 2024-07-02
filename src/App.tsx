@@ -1,13 +1,13 @@
-import { useState } from "react";
+// import { useState } from "react";
 import "./App.css";
-import UserTable from "./UserTable";
+import UserLayout from "./components/userLayaot";
 
 function App() {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
 
   return (
     <>
-      <UserTable />
+      <UserLayout />
     </>
   );
 }
