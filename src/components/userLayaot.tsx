@@ -2,10 +2,10 @@ import user from "./user";
 import UserTable from "./userTable";
 
 const UserLayout = () => {
-  const { userData } = user();
+  const { userData, deleteUser } = user();
   return (
     <>
-      <UserTable data={userData} />
+      <UserTable data={userData} deleteUser={deleteUser} />
     </>
   );
 };

@@ -14,9 +14,10 @@ import EditIcon from "@mui/icons-material/Edit";
 
 interface UserTableProps {
   data: User[];
+  deleteUser: (email: string) => void;
 }
 
-const UserTable = ({ data }: UserTableProps) => {
+const UserTable = ({ data, deleteUser }: UserTableProps) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -59,7 +60,7 @@ const UserTable = ({ data }: UserTableProps) => {
                 </Button>
                 <Button
                   onClick={() => {
-                    // confirm("Desea Borrar") && deletePersons(row.id);
+                    confirm("Desea Borrar") && deleteUser(user.email);
                   }}
                 >
                   <DeleteIcon color="primary" />

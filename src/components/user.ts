@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "../axios";
+import { User } from "./../UserModel";
 
 const user = () => {
-  const [userData, setUserData] = useState<[]>([]);
+  const [userData, setUserData] = useState<User[]>([]);
 
   const getUser = async () => {
     try {
@@ -12,11 +13,21 @@ const user = () => {
       // Handle the error
     }
   };
+  const deleteUser = async (email: string) => {
+    try {
+      setUserData((prevData) =>
+        prevData.filter((user) => user.email !== email)
+      );
+    } catch (error) {
+      // Handle the error
+    }
+  };
   useEffect(() => {
     getUser();
   }, []);
   return {
     userData,
+    deleteUser,
   };
 };
 
