@@ -3,10 +3,11 @@ import user from "./user";
 import UserTableCompact from "./userTableCompact";
 import UserTableExtended from "./userTableExtends";
 import EditUserForm from "./EditUserForm";
-import FilterForm from "./FilterForm";
-import ColumnSelector from "./ColumnSelector";
+import FilterModal from "./FilterModal";
+import ColumnSelectorModal from "./ColumnSelectorModal";
 import TableViewSelector from "./TableViewSelector";
 import { User } from "../UserModel";
+import { Button, Box } from "@mui/material";
 
 const UserLayout = () => {
   const { userData, deleteUser, editUser, Editar, guardaredit, setEditUser } =
@@ -14,6 +15,8 @@ const UserLayout = () => {
   const [filters, setFilters] = useState({});
   const [selectedColumns, setSelectedColumns] = useState<string[]>([]);
   const [view, setView] = useState<"compact" | "extended">("compact");
+  const [filterModalOpen, setFilterModalOpen] = useState(false);
+  const [columnSelectorModalOpen, setColumnSelectorModalOpen] = useState(false);
 
   const applyFilters = (users: User[]) => {
     return users.filter((user) => {
@@ -46,13 +49,44 @@ const UserLayout = () => {
 
   return (
     <>
-      <TableViewSelector view={view} onViewChange={setView} />
-      <FilterForm onFilter={setFilters} />
-      <ColumnSelector
-        columns={allColumns}
-        selectedColumns={selectedColumns}
-        onColumnChange={setSelectedColumns}
+      <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
+        <TableViewSelector view={view} onViewChange={setView} />
+        <Box>
+          <Button
+            onClick={() => setFilterModalOpen(true)}
+            variant="contained"
+            color="primary"
+          >
+            Filtrar Usuarios
+          </Button>
+          {view === "extended" && (
+            <Button
+              onClick={() => setColumnSelectorModalOpen(true)}
+              variant="contained"
+              color="secondary"
+              sx={{ ml: 2 }}
+            >
+              Seleccionar Columnas
+            </Button>
+          )}
+        </Box>
+      </Box>
+
+      <FilterModal
+        open={filterModalOpen}
+        onClose={() => setFilterModalOpen(false)}
+        onFilter={setFilters}
       />
+
+      {view === "extended" && (
+        <ColumnSelectorModal
+          open={columnSelectorModalOpen}
+          onClose={() => setColumnSelectorModalOpen(false)}
+          columns={allColumns}
+          selectedColumns={selectedColumns}
+          onColumnChange={setSelectedColumns}
+        />
+      )}
 
       {view === "compact" ? (
         <UserTableCompact

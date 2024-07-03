@@ -56,14 +56,14 @@ const userTableCompact = ({ data, deleteUser, Editar }: UserTableProps) => {
                   // color="default"
                   onClick={() => Editar(user)}
                 >
-                  <EditIcon />
+                  <EditIcon color="warning" />
                 </Button>
                 <Button
                   onClick={() => {
                     confirm("Desea Borrar") && deleteUser(user.login.uuid);
                   }}
                 >
-                  <DeleteIcon color="primary" />
+                  <DeleteIcon color="error" />
                 </Button>
               </TableCell>
             </TableRow>
