@@ -1,6 +1,6 @@
 import React from "react";
 import { ToggleButton } from "@mui/material";
-import { StyledToggleButtonGroup } from "./styles";
+import { StyledToggleButtonGroup } from "./../../styles/styles";
 
 interface TableViewSelectorProps {
   view: "compact" | "extended";

@@ -8,7 +8,7 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
-import { StyledDialog } from "./styles";
+import { StyledDialog } from "./../../styles/styles";
 
 interface ColumnSelectorModalProps {
   open: boolean;

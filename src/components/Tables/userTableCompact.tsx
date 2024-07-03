@@ -12,8 +12,8 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { StyledTableCell, StyledTableRow } from "./styles";
-import { User } from "../UserModel";
+import { StyledTableCell, StyledTableRow } from "../../styles/styles";
+import { User } from "../../models/UserModel";
 
 interface UserTableProps {
   data: User[];

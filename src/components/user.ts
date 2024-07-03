@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "../axios";
-import { User } from "./../UserModel";
+import { User } from "../models/UserModel";
 
 const user = () => {
   const [userData, setUserData] = useState<User[]>([]);

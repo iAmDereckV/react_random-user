@@ -54,3 +54,8 @@ export interface User {
   };
   nat: string;
 }
+export interface search {
+  name: string;
+  email: string;
+  country: string;
+}

@@ -1,18 +1,22 @@
 import { useState, useEffect } from "react";
 import user from "./user";
-import UserTableCompact from "./userTableCompact";
-import UserTableExtended from "./userTableExtends";
-import EditUserForm from "./EditUserForm";
-import FilterModal from "./FilterModal";
-import ColumnSelectorModal from "./ColumnSelectorModal";
-import TableViewSelector from "./TableViewSelector";
-import { User } from "../UserModel";
+import UserTableCompact from "./Tables/userTableCompact";
+import UserTableExtended from "./Tables/userTableExtends";
+import EditUserForm from "./Forms/EditUserForm";
+import FilterModal from "./Modals/FilterModal";
+import ColumnSelectorModal from "./Modals/ColumnSelectorModal";
+import TableViewSelector from "./Tables/TableViewSelector";
+import { User, search } from "../models/UserModel";
 import { Button, Box } from "@mui/material";
 
 const UserLayout = () => {
   const { userData, deleteUser, editUser, Editar, guardaredit, setEditUser } =
     user();
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState<search>({
+    name: "",
+    email: "",
+    country: "",
+  });
   const [selectedColumns, setSelectedColumns] = useState<string[]>([]);
   const [view, setView] = useState<"compact" | "extended">("compact");
   const [filterModalOpen, setFilterModalOpen] = useState(false);

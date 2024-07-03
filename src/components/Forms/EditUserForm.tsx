@@ -8,7 +8,7 @@ import {
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { TextField as FormikTextField } from "formik-mui";
-import { User } from "./../UserModel";
+import { User } from "./../../models/UserModel";
 
 const UserSchema = Yup.object().shape({
   gender: Yup.string().required("Required"),
