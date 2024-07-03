@@ -38,7 +38,7 @@ const EditUserModal: React.FC<{
   onSave: (user: User) => void;
 }> = ({ user, onClose, onSave }) => (
   <Dialog open onClose={onClose}>
-    <DialogTitle>Editar User</DialogTitle>
+    <DialogTitle>Editar Usuario</DialogTitle>
     <DialogContent>
       <Formik
         initialValues={user}
@@ -146,10 +146,10 @@ const EditUserModal: React.FC<{
               margin="dense"
             />
             <DialogActions>
-              <Button onClick={onClose} color="secondary">
+              <Button onClick={onClose} color="info">
                 Cancelar
               </Button>
-              <Button type="submit" color="primary" disabled={isSubmitting}>
+              <Button type="submit" color="success" disabled={isSubmitting}>
                 Guardar cambio
               </Button>
             </DialogActions>

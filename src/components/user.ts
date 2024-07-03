@@ -8,7 +8,7 @@ const user = () => {
 
   const getUser = async () => {
     try {
-      const response = await axios.get("?results=5");
+      const response = await axios.get("?results=15");
       setUserData(response.data.results);
     } catch (error) {
       // Handle the error

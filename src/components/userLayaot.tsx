@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import user from "./user";
 import UserTableCompact from "./userTableCompact";
 import UserTableExtended from "./userTableExtends";
@@ -17,21 +17,6 @@ const UserLayout = () => {
   const [view, setView] = useState<"compact" | "extended">("compact");
   const [filterModalOpen, setFilterModalOpen] = useState(false);
   const [columnSelectorModalOpen, setColumnSelectorModalOpen] = useState(false);
-
-  const applyFilters = (users: User[]) => {
-    return users.filter((user) => {
-      return (
-        (!filters.gender || user.gender.includes(filters.gender)) &&
-        (!filters.name ||
-          `${user.name.first} ${user.name.last}`.includes(filters.name)) &&
-        (!filters.email || user.email.includes(filters.email)) &&
-        (!filters.country || user.location.country.includes(filters.country))
-      );
-    });
-  };
-
-  const filteredData = applyFilters(userData);
-
   const allColumns = [
     "Genero",
     "Titulo",
@@ -46,7 +31,21 @@ const UserLayout = () => {
     "Celular",
     "Foto",
   ];
+  const applyFilters = (users: User[]) => {
+    return users.filter((user) => {
+      return (
+        (!filters.name ||
+          `${user.name.first} ${user.name.last}`.includes(filters.name)) &&
+        (!filters.email || user.email.includes(filters.email)) &&
+        (!filters.country || user.location.country.includes(filters.country))
+      );
+    });
+  };
 
+  const filteredData = applyFilters(userData);
+  useEffect(() => {
+    setSelectedColumns(allColumns);
+  }, []);
   return (
     <>
       <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
@@ -55,7 +54,7 @@ const UserLayout = () => {
           <Button
             onClick={() => setFilterModalOpen(true)}
             variant="contained"
-            color="primary"
+            color="info"
           >
             Filtrar Usuarios
           </Button>

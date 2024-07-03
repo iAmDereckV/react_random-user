@@ -1,5 +1,6 @@
 import React from "react";
-import { ToggleButtonGroup, ToggleButton } from "@mui/material";
+import { ToggleButton } from "@mui/material";
+import { StyledToggleButtonGroup } from "./styles";
 
 interface TableViewSelectorProps {
   view: "compact" | "extended";
@@ -10,14 +11,18 @@ const TableViewSelector: React.FC<TableViewSelectorProps> = ({
   view,
   onViewChange,
 }) => (
-  <ToggleButtonGroup
+  <StyledToggleButtonGroup
     value={view}
     exclusive
     onChange={(_, newView) => newView && onViewChange(newView)}
   >
-    <ToggleButton value="compact">Vista Compacta</ToggleButton>
-    <ToggleButton value="extended">Vista Extendida</ToggleButton>
-  </ToggleButtonGroup>
+    <ToggleButton value="compact" color="success">
+      Vista Compacta
+    </ToggleButton>
+    <ToggleButton value="extended" color="success">
+      Vista Extendida
+    </ToggleButton>
+  </StyledToggleButtonGroup>
 );
 
 export default TableViewSelector;

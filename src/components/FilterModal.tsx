@@ -26,7 +26,6 @@ const FilterModal: React.FC<FilterModalProps> = ({
       <DialogContent>
         <Formik
           initialValues={{
-            gender: "",
             name: "",
             email: "",
             country: "",
@@ -38,13 +37,6 @@ const FilterModal: React.FC<FilterModalProps> = ({
         >
           {() => (
             <Form>
-              <Field
-                component={FormikTextField}
-                name="gender"
-                label="Genero"
-                fullWidth
-                margin="dense"
-              />
               <Field
                 component={FormikTextField}
                 name="name"
@@ -67,10 +59,10 @@ const FilterModal: React.FC<FilterModalProps> = ({
                 margin="dense"
               />
               <DialogActions>
-                <Button onClick={onClose} color="secondary">
+                <Button onClick={onClose} color="info">
                   Cancelar
                 </Button>
-                <Button type="submit" color="primary">
+                <Button type="submit" color="success">
                   Filtrar
                 </Button>
               </DialogActions>

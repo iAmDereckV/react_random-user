@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
@@ -9,6 +8,7 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
+import { StyledDialog } from "./styles";
 
 interface ColumnSelectorModalProps {
   open: boolean;
@@ -33,7 +33,7 @@ const ColumnSelectorModal: React.FC<ColumnSelectorModalProps> = ({
   };
 
   return (
-    <Dialog open={open} onClose={onClose}>
+    <StyledDialog open={open} onClose={onClose}>
       <DialogTitle>Seleccionar Columnas</DialogTitle>
       <DialogContent>
         <FormGroup>
@@ -52,14 +52,11 @@ const ColumnSelectorModal: React.FC<ColumnSelectorModalProps> = ({
         </FormGroup>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="secondary">
-          Cancelar
-        </Button>
-        <Button onClick={onClose} color="primary">
+        <Button onClick={onClose} variant="outlined" color="success">
           Aceptar
         </Button>
       </DialogActions>
-    </Dialog>
+    </StyledDialog>
   );
 };
 

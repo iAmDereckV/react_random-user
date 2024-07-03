@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Button,
   Table,
@@ -7,10 +8,12 @@ import {
   TableHead,
   TableRow,
   Paper,
+  TablePagination,
 } from "@mui/material";
-import { User } from "../UserModel";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import { StyledTableCell, StyledTableRow } from "./styles";
+import { User } from "../UserModel";
 
 interface UserTableProps {
   data: User[];
@@ -18,25 +21,44 @@ interface UserTableProps {
   Editar: (data: User) => void;
 }
 
-const userTableCompact = ({ data, deleteUser, Editar }: UserTableProps) => {
+const UserTableCompact = ({ data, deleteUser, Editar }: UserTableProps) => {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5); // Cantidad de filas por página
+
+  const handleChangePage = (
+    _event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number
+  ) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const paginatedData = data.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage
+  );
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="center">Nombre</TableCell>
-            <TableCell align="center">Pais</TableCell>
-            <TableCell align="center">Correo</TableCell>
-            <TableCell align="center">Foto</TableCell>
-            <TableCell align="center">Acciones</TableCell>
+            <StyledTableCell align="center">Nombre</StyledTableCell>
+            <StyledTableCell align="center">Pais</StyledTableCell>
+            <StyledTableCell align="center">Correo</StyledTableCell>
+            <StyledTableCell align="center">Foto</StyledTableCell>
+            <StyledTableCell align="center">Acciones</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((user: any) => (
-            <TableRow
-              key={user.login.uuid}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
+          {paginatedData.map((user: any) => (
+            <StyledTableRow key={user.login.uuid}>
               <TableCell align="left" component="th" scope="row">
                 {user.name.first} {user.name.last}
               </TableCell>
@@ -51,11 +73,7 @@ const userTableCompact = ({ data, deleteUser, Editar }: UserTableProps) => {
                 />
               </TableCell>
               <TableCell align="center">
-                <Button
-                  // variant="contained"
-                  // color="default"
-                  onClick={() => Editar(user)}
-                >
+                <Button onClick={() => Editar(user)}>
                   <EditIcon color="warning" />
                 </Button>
                 <Button
@@ -66,12 +84,22 @@ const userTableCompact = ({ data, deleteUser, Editar }: UserTableProps) => {
                   <DeleteIcon color="error" />
                 </Button>
               </TableCell>
-            </TableRow>
+            </StyledTableRow>
           ))}
         </TableBody>
       </Table>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25]} // Opciones de cantidad de filas por página
+        component="div"
+        count={data.length} // Total de elementos en la lista completa
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+        labelRowsPerPage="Filas por página"
+      />
     </TableContainer>
   );
 };
 
-export default userTableCompact;
+export default UserTableCompact;
