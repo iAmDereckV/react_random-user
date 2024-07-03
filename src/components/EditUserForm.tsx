@@ -54,35 +54,35 @@ const EditUserModal: React.FC<{
             <Field
               component={FormikTextField}
               name="gender"
-              label="Gender"
+              label="Genero"
               fullWidth
               margin="dense"
             />
             <Field
               component={FormikTextField}
               name="name.title"
-              label="Title"
+              label="Titulo"
               fullWidth
               margin="dense"
             />
             <Field
               component={FormikTextField}
               name="name.first"
-              label="First Name"
+              label="Primer Nombre"
               fullWidth
               margin="dense"
             />
             <Field
               component={FormikTextField}
               name="name.last"
-              label="Last Name"
+              label="Segundo Nombre"
               fullWidth
               margin="dense"
             />
             <Field
               component={FormikTextField}
               name="location.street.number"
-              label="Street Number"
+              label="Numero de Calle"
               type="number"
               fullWidth
               margin="dense"
@@ -90,35 +90,35 @@ const EditUserModal: React.FC<{
             <Field
               component={FormikTextField}
               name="location.street.name"
-              label="Street Name"
+              label="Nombre de Calle"
               fullWidth
               margin="dense"
             />
             <Field
               component={FormikTextField}
               name="location.city"
-              label="City"
+              label="Ciudad"
               fullWidth
               margin="dense"
             />
             <Field
               component={FormikTextField}
               name="location.state"
-              label="State"
+              label="Estado"
               fullWidth
               margin="dense"
             />
             <Field
               component={FormikTextField}
               name="location.country"
-              label="Country"
+              label="Pais"
               fullWidth
               margin="dense"
             />
             <Field
               component={FormikTextField}
               name="location.postcode"
-              label="Postcode"
+              label="Codigo Postal"
               type="number"
               fullWidth
               margin="dense"
@@ -126,7 +126,7 @@ const EditUserModal: React.FC<{
             <Field
               component={FormikTextField}
               name="email"
-              label="Email"
+              label="Correo"
               type="email"
               fullWidth
               margin="dense"
@@ -134,14 +134,14 @@ const EditUserModal: React.FC<{
             <Field
               component={FormikTextField}
               name="phone"
-              label="Phone"
+              label="Telefono"
               fullWidth
               margin="dense"
             />
             <Field
               component={FormikTextField}
               name="cell"
-              label="Cell"
+              label="Celular"
               fullWidth
               margin="dense"
             />

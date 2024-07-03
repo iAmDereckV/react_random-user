@@ -8,7 +8,7 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import { User } from "./../UserModel";
+import { User } from "../UserModel";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
@@ -18,17 +18,17 @@ interface UserTableProps {
   Editar: (data: User) => void;
 }
 
-const UserTable = ({ data, deleteUser, Editar }: UserTableProps) => {
+const userTableCompact = ({ data, deleteUser, Editar }: UserTableProps) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="center">Name</TableCell>
-            <TableCell align="center">Country</TableCell>
-            <TableCell align="center">Email</TableCell>
-            <TableCell align="center">Picture</TableCell>
-            <TableCell align="center">Actions</TableCell>
+            <TableCell align="center">Nombre</TableCell>
+            <TableCell align="center">Pais</TableCell>
+            <TableCell align="center">Correo</TableCell>
+            <TableCell align="center">Foto</TableCell>
+            <TableCell align="center">Acciones</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -74,4 +74,4 @@ const UserTable = ({ data, deleteUser, Editar }: UserTableProps) => {
   );
 };
 
-export default UserTable;
+export default userTableCompact;
